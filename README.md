@@ -4,7 +4,7 @@
 
 # Bezier Curve Visualization
 
-A didatic and interactable bezier curve visualization made in Unity.
+A didactic and interactive bezier curve visualization made in Unity.
 
 > A work in progress!
 
