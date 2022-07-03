@@ -12,7 +12,7 @@ A didactic and interactive bezier curve visualization made in Unity.
 
 If you ever used programs like Adobe Illustrator or Corl Draw, you are probably used to some kind of pen tool. You probably used a pen to draw a line, and then you used the pen to draw a curve, then tweaked the handles to give the desired shape to that curve. But do you know how those handles work deep down?
 
-That is what bezier curves are for. They are a way to draw curves complex with a lot of control points. Like this one:
+That is what bezier curves are for. They are a way to draw complex curves with a lot of control points. Like this one:
 
 <p align="center">
   <img src="./Docs/complex-curve.gif" />
