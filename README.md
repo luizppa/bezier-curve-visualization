@@ -18,7 +18,7 @@ That is what bezier curves are for. They are a way to draw complex curves with a
   <img src="./Docs/complex-curve.gif" />
 </p>
 
-This result is achieved by, simply put, moving dots along lines that connect other dots. The dots are called control points. Using linear interpolation, we create a dot that is somewhere in between the two of these control points, then do the same to create dots that are somewhere in between these "child dots" and do so until we have only one moving dot. If we trace the route of this last dot, we get a curve that can look like anything we want.
+This result is achieved by, simply put, moving dots along lines that connect other dots. The initial dots are the control points. Using linear interpolation, we create dots that is somewhere in between two of these control points, then do the same to create dots that are somewhere in between these "child dots" and do so until we have only one moving dot. If we trace the route of this last dot, we get a curve that can look like anything we want.
 
 That is likely not a very clear explanation, which is why I tried making a step by step example of a bezier curve that you can interact with and hopefully get a better idea of how it works along the way.
 
