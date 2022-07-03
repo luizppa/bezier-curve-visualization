@@ -38,7 +38,6 @@ public class InitialPoint : Point
 
   public void InsertPoint(InsertPosition position)
   {
-    Debug.Log("Index: " + this.index);
     int index = position == InsertPosition.Before ? this.index : this.index + 1;
     curveManager.InsertInitialPoint(index);
   }

@@ -21,9 +21,9 @@ public class CurveManager : MonoBehaviour
 
 
   [SerializeField] List<InitialPoint> initialPoints = new List<InitialPoint>();
+  [SerializeField] Material curveMaterial = null;
   [SerializeField] GameObject pointPrefab;
   [SerializeField] GameObject initialPointPrefab;
-
   [SerializeField] float lerpSpeed = 0.5f;
 
 
@@ -36,6 +36,7 @@ public class CurveManager : MonoBehaviour
     }
     lineRenderer = GetComponent<LineRenderer>();
     lineRenderer.SetWidth(0.07f, 0.07f);
+    lineRenderer.material = curveMaterial;
 
     minDrawLevel = initialPoints.Count;
     AssignPoints();
@@ -107,6 +108,8 @@ public class CurveManager : MonoBehaviour
   {
     initialPoints.Insert(index, CreateInitialPoint());
     minDrawLevel += 1;
+    curveIndicator = null;
+    ResetCurve();
     AssignPoints();
   }
 
@@ -154,13 +157,22 @@ public class CurveManager : MonoBehaviour
 
   public void ResetCurve()
   {
+    EraseCurve();
+    drawingCurve = false;
     if (curveIndicator != null)
     {
-      curvePoints.Clear();
-      lineRenderer.positionCount = 0;
       needToDrawCurve = true;
-      drawingCurve = false;
     }
+    else
+    {
+      needToDrawCurve = false;
+    }
+  }
+
+  private void EraseCurve()
+  {
+    curvePoints.Clear();
+    lineRenderer.positionCount = 0;
   }
 
   public void ResetAnimation()
