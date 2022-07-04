@@ -19,6 +19,9 @@ public class CurveManager : MonoBehaviour
   private bool needToDrawCurve = false;
   private bool drawingCurve = false;
 
+  private bool showLines = true;
+  private bool showDots = true;
+
 
   [SerializeField] List<InitialPoint> initialPoints = new List<InitialPoint>();
   [SerializeField] Material curveMaterial = null;
@@ -125,29 +128,12 @@ public class CurveManager : MonoBehaviour
     return newPoint.GetComponent<Point>();
   }
 
-  public float GetLerpState()
-  {
-    return lerpState;
-  }
-
-  public int GetMinDrawLevel()
-  {
-    return minDrawLevel;
-  }
-
   public void AdvanceAnimation()
   {
     if (minDrawLevel > 0)
     {
       minDrawLevel--;
     }
-  }
-
-  public void SetCurveIndicator(Point curveIndicator)
-  {
-    this.curveIndicator = curveIndicator;
-    this.curvePoints.Clear();
-    needToDrawCurve = true;
   }
 
   public Point GetCurveIndicator()
@@ -200,4 +186,44 @@ public class CurveManager : MonoBehaviour
     AssignPoints();
   }
 
+  // @region Getters
+
+  public float GetLerpState()
+  {
+    return lerpState;
+  }
+
+  public int GetMinDrawLevel()
+  {
+    return minDrawLevel;
+  }
+
+  public bool GetShowLines(){
+    return showLines;
+  }
+
+  public bool GetShowDots(){
+    return showDots;
+  }
+
+  // @endregion
+
+  // @region Setters
+
+  public void SetCurveIndicator(Point curveIndicator)
+  {
+    this.curveIndicator = curveIndicator;
+    this.curvePoints.Clear();
+    needToDrawCurve = true;
+  }
+
+  public void SetShowLines(bool show){
+    showLines = show;
+  }
+
+  public void SetShowDots(bool show){
+    showDots = show;
+  }
+
+  // @endregion
 }
