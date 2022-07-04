@@ -21,6 +21,12 @@ public class InitialPoint : Point
     spriteRenderer.color = Color.red;
   }
 
+  protected override void ControlGraphics()
+  {
+    base.ControlGraphics();
+    spriteRenderer.enabled = true;
+  }
+
   void ManagePosition()
   {
     if (pointDragged)

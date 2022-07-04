@@ -22,7 +22,8 @@ public class Point : MonoBehaviour
 
   protected virtual void Update()
   {
-    if (curveManager.GetMinDrawLevel() < pointsAtLevel)
+    ControlGraphics();
+    if (ShouldDrawChild())
     {
       ManageLine();
       ManageChildPoint();
@@ -34,11 +35,24 @@ public class Point : MonoBehaviour
     }
   }
 
+  private void OnDestroy()
+  {
+    RemoveChild();
+  }
+
+  protected bool ShouldDrawChild(){
+    return curveManager.GetMinDrawLevel() < pointsAtLevel;
+  }
+
+  protected virtual void ControlGraphics(){
+    lineRenderer.enabled = curveManager.GetShowLines() && ShouldDrawChild();
+    spriteRenderer.enabled = curveManager.GetShowDots() || (ShouldDrawChild() && pointsAtLevel == 1);
+  }
+
   private void ManageLine()
   {
-    if (nextPoint != null)
+    if (nextPoint != null && curveManager.GetShowLines())
     {
-      lineRenderer.enabled = true;
       lineRenderer.positionCount = 2;
       lineRenderer.SetPosition(0, transform.position);
       lineRenderer.SetPosition(1, nextPoint.transform.position);
@@ -54,9 +68,9 @@ public class Point : MonoBehaviour
         childPoint = curveManager.CreatePoint();
         childPoint.Configure(pointsAtLevel - 1);
       }
-      if (nextPoint.GteChildPoint() != null)
+      if (nextPoint.GetChildPoint() != null)
       {
-        childPoint.SetNextPoint(nextPoint.GteChildPoint());
+        childPoint.SetNextPoint(nextPoint.GetChildPoint());
       }
       childPoint.transform.position = Vector3.Lerp(transform.position, nextPoint.transform.position, curveManager.GetLerpState());
     }
@@ -94,16 +108,6 @@ public class Point : MonoBehaviour
     Destroy(gameObject);
   }
 
-  public void SetNextPoint(Point nextPoint)
-  {
-    this.nextPoint = nextPoint;
-  }
-
-  public Point GteChildPoint()
-  {
-    return childPoint;
-  }
-
   public void Configure(int pointsAtLevel)
   {
     this.pointsAtLevel = pointsAtLevel;
@@ -113,8 +117,21 @@ public class Point : MonoBehaviour
     }
   }
 
-  private void OnDestroy()
+  // @region Getters
+
+  public Point GetChildPoint()
   {
-    RemoveChild();
+    return childPoint;
   }
+
+  // @endregion
+
+  // @region Setters
+
+  public void SetNextPoint(Point nextPoint)
+  {
+    this.nextPoint = nextPoint;
+  }
+
+  // @endregion
 }
