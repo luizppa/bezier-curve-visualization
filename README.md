@@ -22,9 +22,9 @@ This result is achieved by, simply put, moving dots along lines that connect oth
 
 That is likely not a very clear explanation, which is why I tried making a step by step example of a bezier curve that you can interact with and hopefully get a better idea of how it works along the way.
 
-> I will host it on a web address in the future, for now you can only use it by cloning the repository and running it locally (sorry).
-
 ## Usage
+
+You can access the WebGL version [here](https://luizppa.github.io/bezier-curve-visualization/)!
 
 Simply drag and drop the red dots to create a curve. You can add more points by clicking on the yellow dots arround the red ones (right to add after, left to add before). You can visualize the curve construction by clicking the "Continue" button on the bottom left. Click "Reset" to reset the curve.
 
