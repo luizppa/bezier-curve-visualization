@@ -1,4 +1,4 @@
-name: Deploy
+name: Build & Deploy
 
 on:
   push:
@@ -13,9 +13,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
 
-      - name: Build for WebGL
+      - name: Build for WebGL 🛠️
         uses: game-ci/unity-builder@v2
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
@@ -24,8 +25,13 @@ jobs:
         with:
           targetPlatform: WebGL
 
-      - name: Upload artifact
+      - name: Upload artifact 🌎
         uses: actions/upload-artifact@v2
         with:
           name: Build
           path: build
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build
