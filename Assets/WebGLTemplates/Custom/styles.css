@@ -1,16 +1,24 @@
-body,html{
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
+  background-color: #F7F2FF;
+  overflow: hidden;
 }
 
-#unity-canvas: {
+#unity-canvas {
+  width: 100vw;
+  height: 100vh;
+}
+
+canvas {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   width: 100%;
   height: 100%;
+  position: absolute;
 }
