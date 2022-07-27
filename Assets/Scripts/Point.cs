@@ -16,7 +16,7 @@ public class Point : MonoBehaviour
     curveManager = FindObjectOfType<CurveManager>();
     lineRenderer = GetComponent<LineRenderer>();
     lineRenderer.SetWidth(0.07f, 0.07f);
-    lineRenderer.SetVertexCount(2);
+    lineRenderer.positionCount = 2;
     spriteRenderer = GetComponent<SpriteRenderer>();
   }
 
@@ -40,11 +40,13 @@ public class Point : MonoBehaviour
     RemoveChild();
   }
 
-  protected bool ShouldDrawChild(){
+  protected bool ShouldDrawChild()
+  {
     return curveManager.GetMinDrawLevel() < pointsAtLevel;
   }
 
-  protected virtual void ControlGraphics(){
+  protected virtual void ControlGraphics()
+  {
     lineRenderer.enabled = curveManager.GetShowLines() && ShouldDrawChild();
     spriteRenderer.enabled = curveManager.GetShowDots() || (ShouldDrawChild() && pointsAtLevel == 1);
   }
@@ -76,7 +78,7 @@ public class Point : MonoBehaviour
     }
   }
 
-  private void ManageSelf()
+  protected virtual void ManageSelf()
   {
     if (pointsAtLevel == 1)
     {
@@ -98,7 +100,7 @@ public class Point : MonoBehaviour
     {
       childPoint.Remove();
       childPoint = null;
-      lineRenderer.SetVertexCount(0);
+      lineRenderer.positionCount = 0;
     }
   }
 

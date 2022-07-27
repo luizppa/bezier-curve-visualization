@@ -22,7 +22,6 @@ public class CurveManager : MonoBehaviour
   private bool showLines = true;
   private bool showDots = true;
 
-
   [SerializeField] List<InitialPoint> initialPoints = new List<InitialPoint>();
   [SerializeField] Material curveMaterial = null;
   [SerializeField] GameObject pointPrefab;
@@ -49,6 +48,14 @@ public class CurveManager : MonoBehaviour
   {
     DrawCurve();
     CalculateLerp();
+  }
+
+  public Bounds GetCurveBounds()
+  {
+    float screenAspect = (float)Screen.width / (float)Screen.height;
+    float cameraHeight = Camera.main.orthographicSize * 2;
+    Bounds bounds = new Bounds(Camera.main.transform.position, new Vector3(cameraHeight * screenAspect, cameraHeight, 0));
+    return bounds;
   }
 
   void CalculateLerp()
@@ -198,11 +205,13 @@ public class CurveManager : MonoBehaviour
     return minDrawLevel;
   }
 
-  public bool GetShowLines(){
+  public bool GetShowLines()
+  {
     return showLines;
   }
 
-  public bool GetShowDots(){
+  public bool GetShowDots()
+  {
     return showDots;
   }
 
@@ -217,11 +226,13 @@ public class CurveManager : MonoBehaviour
     needToDrawCurve = true;
   }
 
-  public void SetShowLines(bool show){
+  public void SetShowLines(bool show)
+  {
     showLines = show;
   }
 
-  public void SetShowDots(bool show){
+  public void SetShowDots(bool show)
+  {
     showDots = show;
   }
 
