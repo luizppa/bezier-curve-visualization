@@ -18,13 +18,18 @@ public class InitialPoint : Point
   {
     ManagePosition();
     base.Update();
-    spriteRenderer.color = Color.red;
+    // spriteRenderer.color = Color.red;
   }
 
   protected override void ControlGraphics()
   {
     base.ControlGraphics();
     spriteRenderer.enabled = true;
+  }
+
+  protected override void ManageSelf()
+  {
+    // noop
   }
 
   void ManagePosition()

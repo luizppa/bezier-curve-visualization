@@ -40,11 +40,13 @@ public class Point : MonoBehaviour
     RemoveChild();
   }
 
-  protected bool ShouldDrawChild(){
+  protected bool ShouldDrawChild()
+  {
     return curveManager.GetMinDrawLevel() < pointsAtLevel;
   }
 
-  protected virtual void ControlGraphics(){
+  protected virtual void ControlGraphics()
+  {
     lineRenderer.enabled = curveManager.GetShowLines() && ShouldDrawChild();
     spriteRenderer.enabled = curveManager.GetShowDots() || (ShouldDrawChild() && pointsAtLevel == 1);
   }
@@ -76,7 +78,7 @@ public class Point : MonoBehaviour
     }
   }
 
-  private void ManageSelf()
+  protected virtual void ManageSelf()
   {
     if (pointsAtLevel == 1)
     {
