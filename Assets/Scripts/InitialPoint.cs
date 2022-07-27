@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,7 +37,10 @@ public class InitialPoint : Point
   {
     if (pointDragged)
     {
-      Vector3 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+      Bounds curveBounds = curveManager.GetCurveBounds();
+      Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+      Vector3 newPosition = curveBounds.ClosestPoint(new Vector3(mousePosition.x, mousePosition.y, transform.position.z));
       transform.position = new Vector3(newPosition.x, newPosition.y, transform.position.z);
       curveManager.ResetCurve();
     }

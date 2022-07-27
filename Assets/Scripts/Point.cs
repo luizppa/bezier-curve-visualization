@@ -16,7 +16,7 @@ public class Point : MonoBehaviour
     curveManager = FindObjectOfType<CurveManager>();
     lineRenderer = GetComponent<LineRenderer>();
     lineRenderer.SetWidth(0.07f, 0.07f);
-    lineRenderer.SetVertexCount(2);
+    lineRenderer.positionCount = 2;
     spriteRenderer = GetComponent<SpriteRenderer>();
   }
 
@@ -100,7 +100,7 @@ public class Point : MonoBehaviour
     {
       childPoint.Remove();
       childPoint = null;
-      lineRenderer.SetVertexCount(0);
+      lineRenderer.positionCount = 0;
     }
   }
 
